@@ -59,6 +59,7 @@
       - [Riscos amplamente discutidos](#riscos-amplamente-discutidos)
       - [Estado atual](#estado-atual-2)
     - [6.15.4. Comparação](#6154-comparação)
+- [7. Resumo](#7-resumo)
 
 
 # 1. Resumo de conceitos
@@ -1071,3 +1072,10 @@ ASI representa uma IA que supera o ser humano em todas as dimensões cognitivas,
 | Risco sistêmico               | Baixo a médio               | Alto                   | Extremamente alto                 |
 | Principal foco atual          | Engenharia                  | Pesquisa               | Ética e governança                |
 
+# 7. Resumo
+
+* Bloco A: Como a IA lê (Fundamentos).
+* Bloco B: Como a IA pensa (Modelos e Treino).
+* Bloco C: Como a IA consulta (Dados e Contexto).
+* Bloco D: Como a IA age (Agentes e Workflows).
+* Bloco E: Para onde a IA vai (O Futuro).
