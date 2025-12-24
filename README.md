@@ -42,14 +42,22 @@
   - [6.14.  Orquestração de Agentes (O "Maestro")](#614--orquestração-de-agentes-o-maestro)
   - [6.15. ASI (Artificial Super Intelligence)](#615-asi-artificial-super-intelligence)
     - [6.15.1. ANI — Artificial Narrow Intelligence](#6151-ani--artificial-narrow-intelligence)
-    - [6.15.2. AGI — Artificial General Intelligence](#6152-agi--artificial-general-intelligence)
-    - [O que diferencia AGI de ANI](#o-que-diferencia-agi-de-ani)
-    - [6.15.3. ASI — Artificial Super Intelligence](#6153-asi--artificial-super-intelligence)
       - [Definição](#definição)
+      - [Características centrais](#características-centrais)
+      - [Exemplos práticos](#exemplos-práticos)
+      - [Limitações fundamentais](#limitações-fundamentais)
+      - [Estado atual](#estado-atual)
+    - [6.15.2. AGI — Artificial General Intelligence](#6152-agi--artificial-general-intelligence)
+      - [Definição](#definição-1)
+      - [Características esperadas](#características-esperadas)
+    - [O que diferencia AGI de ANI](#o-que-diferencia-agi-de-ani)
+      - [Estado atual](#estado-atual-1)
+    - [6.15.3. ASI — Artificial Super Intelligence](#6153-asi--artificial-super-intelligence)
+      - [Definição](#definição-2)
       - [Características teóricas](#características-teóricas)
       - [Singularidade tecnológica](#singularidade-tecnológica)
       - [Riscos amplamente discutidos](#riscos-amplamente-discutidos)
-      - [Estado atual](#estado-atual)
+      - [Estado atual](#estado-atual-2)
     - [6.15.4. Comparação](#6154-comparação)
 
 
@@ -902,11 +910,11 @@ ASI (Artificial Super Intelligence): O ponto de Singularidade. Aqui, a IA não a
 
 (Inteligência Artificial Estreita)
 
-Definição
+#### Definição
 
 ANI é a forma de IA existente hoje. Ela é projetada para executar tarefas específicas com alto desempenho, mas não possui compreensão geral, consciência, intenção própria ou capacidade de transferir aprendizado de forma ampla entre domínios.
 
-Características centrais
+#### Características centrais
 
 Especializada em um domínio ou conjunto restrito de tarefas
 
@@ -916,7 +924,7 @@ Opera dentro de limites bem definidos
 
 Não possui objetivos próprios nem autoconsciência
 
-Exemplos práticos
+#### Exemplos práticos
 
 Tradução automática
 
@@ -928,7 +936,7 @@ LLMs atuais (chatbots, geração de código, RAG, agentes)
 
 Mesmo LLMs avançados continuam sendo ANI, pois não entendem o mundo como um humano entende.
 
-Limitações fundamentais
+#### Limitações fundamentais
 
 Falha fora do escopo treinado
 
@@ -938,7 +946,7 @@ Não aprende sozinha novos domínios sem re-treinamento
 
 Não tem intenção, valores ou entendimento semântico profundo
 
-Estado atual
+#### Estado atual
 
 ✅ Realidade consolidada
 É a base de praticamente toda a IA em produção hoje.
@@ -948,23 +956,23 @@ Estado atual
 
 (Inteligência Artificial Geral)
 
-Definição
+#### Definição
 
 AGI é uma IA capaz de aprender, compreender e executar qualquer tarefa intelectual que um ser humano consiga, com flexibilidade, adaptação e transferência de conhecimento entre domínios.
 
-Características esperadas
+#### Características esperadas
 
-Aprendizado generalizável
+* Aprendizado generalizável
 
-Transferência de conhecimento entre áreas distintas
+* Transferência de conhecimento entre áreas distintas
 
-Capacidade de abstração
+* Capacidade de abstração
 
-Planejamento de longo prazo
+* Planejamento de longo prazo
 
-Compreensão contextual profunda
+* Compreensão contextual profunda
 
-Autonomia cognitiva
+* Autonomia cognitiva
 
 
 ### O que diferencia AGI de ANI
@@ -981,15 +989,15 @@ Autonomia cognitiva
 
 Não há consenso se:
 
-AGI exige consciência
+* AGI exige consciência
 
-AGI pode emergir apenas com escala
+* AGI pode emergir apenas com escala
 
-Alguns veem LLMs + agentes + memória como “proto-AGI”
+* Alguns veem LLMs + agentes + memória como “proto-AGI”
 
-Outros defendem que AGI exige novos paradigmas cognitivos
+* Outros defendem que AGI exige novos paradigmas cognitivos
 
-Estado atual
+#### Estado atual
 
 ⚠️ Hipótese em pesquisa ativa
 Não existe consenso se já estamos “próximos” ou apenas criando simulações sofisticadas de generalidade.
