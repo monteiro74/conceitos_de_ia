@@ -285,5 +285,60 @@ Limpeza de Dados: Ele identifica que palavras como "O", "está" e "as" são ruí
 Stemming (RSLP): Veja como "processando" vira process e "rapidamente" vira rapid. O NLTK é muito usado para essa "redução bruta", útil para criar buscadores simples onde "processamento" e "processado" devem ser encontrados pela mesma raiz.
 
 
+| Característica | **NLTK** (Natural Language Toolkit) | **spaCy** |
+| :--- | :--- | :--- |
+| **Filosofia** | Acadêmica, modular e educacional. | Pragmática, industrial e eficiente. |
+| **Facilidade de Uso** | Mais manual (você precisa configurar cada etapa). | Mais automática (entrega um objeto pronto com tudo). |
+| **Velocidade** | Mais lento (executado em Python puro). | Muito rápido (otimizado em Cython/C++). |
+| **Abordagem** | Oferece muitos algoritmos para você testar. | Oferece "o melhor" algoritmo já pré-escolhido. |
+| **Integração com IA** | Difícil integração com Deep Learning moderno. | Nativo para Deep Learning e Transformers. |
+| **Tratamento de Dados** | Ótimo para lidar com strings e listas. | Ótimo para lidar com objetos de documentos (Doc). |
+| **Precisão (NER)** | Moderada; exige muito ajuste manual. | Alta; usa modelos de redes neurais prontos. |
+| **Uso Recomendado** | Pesquisas acadêmicas e aprendizado de base. | Sistemas de produção e aplicações reais de mercado. |
+
+## 6.2. Tokenização
+
+A tokenização é o processo de transformar a linguagem humana em unidades que a matemática da IA consegue processar. Imagine que a IA é uma calculadora superpotente: ela não sabe o que é a letra "A" ou a palavra "Casa", mas ela entende perfeitamente o número 1452.
+
+Aqui está como esse processo funciona na prática:
+
+1. A Quebra do Texto (Subword Tokenization)
+
+Os modelos modernos (como o GPT) não quebram o texto apenas por palavras inteiras. Eles usam uma técnica chamada Byte Pair Encoding (BPE), que divide palavras comuns em unidades inteiras e palavras raras em pedaços (sub-tokens).
+
+Palavra Comum: maçã → vira 1 token: [maçã]
+
+Palavra Complexa/Rara: anticonstitucionalmente → vira vários tokens: [anti] [constitucional] [mente]
+
+Por que isso é genial? Isso permite que a IA entenda palavras que ela nunca viu antes. Se ela conhece "anti" e conhece "herói", ela consegue inferir o significado de "anti-herói" mesmo que essa palavra exata não estivesse no seu treinamento.
+
+2. Do Texto para o ID (O Dicionário)
+
+Cada token possui um número de identificação único em um "dicionário" fixo do modelo.
+
+"Olá" → ID 1254
+
+" Mundo" → ID 3421
+
+Quando você digita "Olá Mundo", a IA recebe a sequência: [1254, 3421]. É com esses números que os cálculos neurais acontecem.
+
+3. Onde a Tokenização é Usada no Dia a Dia?
+
+Cálculo de Custo: As empresas de IA (OpenAI, Anthropic) cobram por tokens, não por palavras. Como uma palavra pode ter mais de um token, o custo depende da complexidade do texto.
+
+Limites de Memória: A Context Window (Janela de Contexto) é medida em tokens. Se um modelo tem 8k de contexto, ele consegue "ler" cerca de 6.000 palavras antes de começar a esquecer o início.
+
+Línguas Diferentes: O português costuma gastar mais tokens que o inglês para dizer a mesma coisa, porque os tokenizadores são treinados majoritariamente em inglês, o que torna o uso da IA em português ligeiramente mais caro e lento.
+
+Exemplo Visual:
+Se passarmos a palavra "estudando" pelo tokenizador do GPT, ele pode ver:
+
+estud (Token ID: 452)
+
+ando (Token ID: 893)
+
+Curiosidade: É por isso que modelos antigos tinham dificuldade em inverter palavras ou fazer rimas perfeitas; eles não "viam" as letras individualmente, mas sim esses blocos numéricos.
+
+## 6.3. Context window
 
 
