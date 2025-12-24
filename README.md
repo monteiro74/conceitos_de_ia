@@ -461,15 +461,42 @@ timeline
 
 ```
 
+De forma gráfica usando um fluxograma temos:
+
 ```mermaid
 flowchart TD
-    A[1950s–1990s<br/>Modelos baseados em regras (simbólicos)<br/>• Gramáticas e regras manuais<br/>• Baixa escalabilidade e alta fragilidade] --> 
-    B[1990s–2010<br/>NLP estatístico<br/>• n-grams e modelos probabilísticos<br/>• HMM e CRF em pipelines clássicos] --> 
-    C[2013–2016<br/>Word Embeddings<br/>• Word2Vec (2013), GloVe, FastText<br/>• Vetores semânticos; contexto ainda fixo] --> 
-    D[2014–2017<br/>Redes neurais sequenciais<br/>• RNN, LSTM, GRU<br/>• Capturam sequência; treino lento em longos contextos] --> 
-    E[2017<br/>Transformer<br/>• “Attention Is All You Need”<br/>• Self-attention, paralelismo, dependências longas] --> 
-    F[2018<br/>BERT<br/>• Encoder-only + bidirecional<br/>• Pré-treinamento (MLM/NSP) + fine-tuning]
+    A["1950s-1990s<br/>Modelos baseados em regras (simbolicos)<br/>- Gramaticas e regras manuais<br/>- Baixa escalabilidade e alta fragilidade"] -->
+    B["1990s-2010<br/>NLP estatistico<br/>- n-grams e modelos probabilisticos<br/>- HMM e CRF em pipelines classicos"] -->
+    C["2013-2016<br/>Word Embeddings<br/>- Word2Vec (2013), GloVe, FastText<br/>- Vetores semanticos; contexto ainda fixo"] -->
+    D["2014-2017<br/>Redes neurais sequenciais<br/>- RNN, LSTM, GRU<br/>- Capturam sequencia; treino lento em longos contextos"] -->
+    E["2017<br/>Transformer<br/>- Attention Is All You Need<br/>- Self-attention, paralelismo, dependencias longas"] -->
+    F["2018<br/>BERT<br/>- Encoder-only + bidirecional<br/>- Pre-treinamento (MLM/NSP) + fine-tuning"]
+
 
 ```
 
-teste
+Uma versão da evolução em Gantt:
+
+```mermaid
+
+gantt
+    title Linha do tempo (NLP) — de regras ao BERT
+    dateFormat  YYYY-MM-DD
+    axisFormat  %Y
+
+    section Fundamentos
+    Modelos baseados em regras (simbólicos) :done, r1, 1950-01-01, 1990-12-31
+    NLP estatístico (n-grams, HMM, CRF)     :done, s1, 1990-01-01, 2010-12-31
+
+    section Neural / Deep Learning
+    Word embeddings (Word2Vec, GloVe, FastText) :done, e1, 2013-01-01, 2016-12-31
+    Redes sequenciais (RNN, LSTM, GRU)          :done, n1, 2014-01-01, 2017-12-31
+
+    section Transformers e pré-treinamento
+    Transformer (Attention Is All You Need) :milestone, t1, 2017-06-01, 0d
+    BERT (pré-treinamento bidirecional)     :milestone, b1, 2018-10-01, 0d
+
+
+```
+
+
