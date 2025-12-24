@@ -152,3 +152,26 @@ Isso é chamado de "Faithfulness" (Fidelidade): o desafio de garantir que a IA n
 
 ## 4.4.  Bloco D — Arquiteturas Modernas
 
+13. AI Workflow (Fluxo de Trabalho de IA) Diferente de uma conversa única com um chatbot, um workflow de IA é uma sequência estruturada e programada de etapas onde a saída de uma tarefa serve como entrada para a próxima. Imagine um processo industrial: primeiro uma IA resume um e-mail, depois outra extrai dados técnicos e, por fim, uma terceira gera um relatório. Essa abordagem permite que tarefas complexas sejam quebradas em partes menores e mais controláveis, aumentando drasticamente a precisão e a confiabilidade do sistema final.
+
+14. Sub-agents (Subagentes) São instâncias especializadas de IA projetadas para realizar uma única tarefa específica sob o comando de um "agente principal" ou coordenador. Em uma arquitetura de múltiplos agentes, os subagentes funcionam como departamentos de uma empresa: enquanto um subagente é especialista em pesquisar na web, outro é especialista em escrever código e um terceiro em revisar gramática. Essa divisão de trabalho evita que o modelo principal fique sobrecarregado e cometa erros por tentar fazer muitas coisas diferentes ao mesmo tempo.
+
+15. Agentic AI (IA Agêntica) Representa a evolução da IA para sistemas que possuem um grau de autonomia para planejar e executar ações. Ao receber um objetivo (ex: "Organize minha viagem de férias dentro do meu orçamento"), uma IA agêntica não apenas sugere destinos, mas decide quais ferramentas usar, acessa sites de busca, compara preços, resolve imprevistos e completa a tarefa com o mínimo de intervenção humana. Ela não espera por comandos passo a passo; ela entende o objetivo final e traça o próprio caminho para chegar lá.
+
+16. LRM (Large Reasoning Model - Modelo de Raciocínio) Enquanto os LLMs tradicionais são focados em fluência e predição rápida de palavras, os LRMs são treinados especificamente para "pensar antes de falar" através de uma técnica chamada Chain of Thought (Cadeia de Pensamento). Esses modelos utilizam tempo de processamento extra para verificar logicamente diferentes caminhos de solução, corrigir os próprios erros de raciocínio e validar hipóteses antes de entregar a resposta final, sendo ideais para matemática avançada, lógica jurídica e programação complexa.
+
+17. MCP (Model Context Protocol) Lançado pela Anthropic no final de 2024, o MCP é um padrão aberto que resolve o problema da "comunicação" entre IAs e o mundo exterior. Ele funciona como uma "porta universal" (similar ao que o USB fez para o hardware) que permite que qualquer modelo de IA se conecte instantaneamente a bancos de dados, ferramentas de software (como Google Drive, Slack ou GitHub) e sistemas locais sem a necessidade de criar uma integração personalizada para cada uma. É a infraestrutura técnica que finalmente permite que agentes acessem seus dados de forma segura e padronizada.
+
+## 4.5.  Bloco E — Visão de Longo Prazo (Conceitual)
+
+18. ASI (Artificial Super Intelligence - Superinteligência Artificial) A ASI é um estágio teórico da evolução da IA em que o sistema não apenas iguala a inteligência humana (o chamado AGI), mas a supera vastamente em todas as áreas, incluindo criatividade científica, sabedoria social e habilidades de resolução de problemas. Diferente dos modelos atuais, uma ASI seria capaz de processar informações em velocidades impossíveis para o cérebro biológico e realizar descobertas que a humanidade levaria séculos para alcançar. É um conceito que levanta debates profundos sobre o "alinhamento" (garantir que os objetivos da IA sejam os mesmos dos humanos) e é considerado o ponto de singularidade tecnológica, onde o progresso se torna exponencial e imprevisível.
+
+# 5. Resumo
+
+* Bloco A & B: O motor e o combustível (NLP, Tokens, LLMs).
+
+* Bloco C & D: O corpo e a ação (RAG, Fluxos, Agentes, MCP).
+
+* Bloco E: O horizonte (ASI).
+
+# 6. 
