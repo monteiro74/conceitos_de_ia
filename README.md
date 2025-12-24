@@ -30,6 +30,7 @@
     - [6.5.3. Mapa de dependência conceitual](#653-mapa-de-dependência-conceitual)
   - [6.6. Vector Database (Banco de Dados Vetorial)](#66-vector-database-banco-de-dados-vetorial)
   - [6.7. RAG (Retrieval-Augmented Generation)](#67-rag-retrieval-augmented-generation)
+    - [6.7.1. Ligação entre Vector e RAG](#671-ligação-entre-vector-e-rag)
 
 
 # 1. Resumo de conceitos
@@ -727,3 +728,14 @@ Recuperação (Retrieval): O sistema busca no Vector DB os pedaços de documento
 Aumento (Augmentation): O sistema anexa esses documentos ao prompt original do usuário.
 
 Geração (Generation): O LLM lê a pergunta + os documentos e gera uma resposta baseada apenas naqueles fatos.
+
+### 6.7.1. Ligação entre Vector e RAG
+
+1. Embeddings (A Ponte)
+Embeddings são o "tradutor" que transforma texto em vetores. É um modelo de IA menor que gera uma lista de números (ex: 1536 dimensões) para cada sentença. Sem bons embeddings, o Vector DB não consegue encontrar a informação correta.
+
+2. Semantic Search (Busca Semântica)
+É o ato de encontrar informações pelo conceito, não pela palavra-chave. Isso permite que sistemas de suporte ao cliente entendam a intenção do usuário mesmo quando ele usa gírias ou termos imprecisos.
+
+
+
