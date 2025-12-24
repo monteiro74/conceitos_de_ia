@@ -101,7 +101,7 @@ graph TD
 ## 4.1. Bloco A — Fundamentos Obrigatórios
 
 1. NLP (Natural Language Processing) É a subárea da Inteligência Artificial que combina linguística computacional e ciência de dados para permitir que softwares entendam, interpretem e gerem linguagem humana de forma natural. O objetivo do NLP é transpor a barreira entre a comunicação humana (que é ambígua, cheia de gírias e nuances) e o processamento de dados binários, sendo a base para tecnologias como tradutores automáticos, análise de sentimento e assistentes de voz.
-
+   
 2. Token Diferente dos humanos que leem palavras inteiras, os modelos de IA fragmentam o texto em unidades menores chamadas tokens, que podem ser palavras completas, sílabas ou até caracteres isolados. Esse processo de "tokenização" é crucial porque transforma a linguagem em sequências numéricas que a rede neural consegue processar matematicamente; em média, 1.000 tokens correspondem a cerca de 750 palavras em inglês.
 
 3. Context Window (Janela de Contexto) Representa a capacidade máxima de dados (em tokens) que um modelo consegue "enxergar" e manter em sua memória de trabalho durante uma única interação. Se você fornecer um documento que exceda essa janela, a IA começará a "esquecer" o início do texto, perdendo a coesão. É o equivalente à quantidade de páginas que você consegue manter abertas na sua frente para realizar uma tarefa sem precisar fechar nenhuma.
@@ -122,4 +122,33 @@ graph TD
 
 10. MoE (Mixture of Experts) É uma técnica de design de redes neurais que permite criar modelos gigantescos de forma eficiente. Em vez de ativar todos os parâmetros para cada pergunta (como uma "caixa única"), o modelo é dividido em vários subconjuntos especializados (os "especialistas"). Quando uma tarefa chega, um roteador inteligente ativa apenas os especialistas mais relevantes para aquele assunto. Isso permite que modelos como o GPT-4 ou o Mixtral tenham trilhões de parâmetros, mas consumam menos energia e tempo de resposta do que se fossem modelos densos tradicionais.
 
+## 4.3.  Bloco C — Infraestrutura Semântica
+
+11. Vector Database (Banco de Dados Vetoriais) Diferente dos bancos de dados tradicionais que armazenam informações em tabelas ou textos simples, um banco de dados vetorial armazena dados como "embeddings" — sequências de números que representam as coordenadas de um conceito em um espaço multidimensional. Essa estrutura permite que o sistema realize buscas semânticas em vez de buscas por palavras-chave; ou seja, ele consegue encontrar informações relacionadas pelo significado. Por exemplo, se você buscar por "felino", ele será capaz de recuperar documentos sobre "gatos" mesmo que a palavra exata não esteja lá, por estarem geometricamente próximos no espaço vetorial.
+
+12. RAG (Retrieval Augmented Generation) O RAG é uma arquitetura que otimiza a saída de um LLM consultando uma base de conhecimento confiável antes de gerar uma resposta. Em vez de confiar apenas no que a IA aprendeu durante seu treinamento (que pode estar defasado ou incompleto), o sistema primeiro "busca" (Retrieval) documentos relevantes em um banco de dados vetorial e, em seguida, entrega esse conteúdo como contexto para que a IA "gere" (Generation) a resposta. Isso reduz drasticamente as alucinações e permite que a IA responda sobre dados privados ou eventos que aconteceram hoje, funcionando como uma prova de "consulta a livro aberto" para o modelo.
+
+
+1. RAG como o "Antídoto" para a Alucinação
+A alucinação ocorre porque o LLM tenta prever a próxima palavra com base apenas em estatística. Ao introduzir o RAG, você força o modelo a basear sua resposta em fatos recuperados do Vector Database.
+
+Logística: O sistema diz ao modelo: "Responda apenas com base nestes documentos. Se a resposta não estiver neles, diga que não sabe". Isso muda o comportamento do modelo de "inventar para agradar" para "consultar para informar".
+
+2. Otimização da Temperatura para Precisão
+Em sistemas que utilizam o Bloco C, a Temperatura geralmente é ajustada para valores muito baixos (perto de 0).
+
+Por que? Se você investiu infraestrutura para buscar o dado exato no Vector Database através do RAG, você não quer que o modelo seja "criativo" com esses fatos. Uma temperatura baixa garante que a IA transmita a informação recuperada de forma fiel e técnica, sem "enfeitar" os dados.
+
+3. Alucinação de Recuperação (Um novo desafio)
+No Bloco C, surge um novo tipo de erro: a IA pode alucinar não porque é criativa, mas porque o Vector Database entregou um documento irrelevante (ruído), e ela tentou forçar uma conexão entre esse documento e a pergunta.
+
+Isso é chamado de "Faithfulness" (Fidelidade): o desafio de garantir que a IA não ignore o conteúdo do RAG para voltar a usar seus próprios pesos internos (o que causaria a alucinação clássica).
+
+| Conceito | Papel no Bloco C |
+| :--- | :--- |
+| **Alucinação** | É o "inimigo" que o RAG foi projetado para combater. |
+| **Temperatura** | É o "botão de controle" que deixamos no mínimo para garantir que o RAG seja seguido à risca. |
+| **Vector DB** | É a "âncora de realidade" que impede o modelo de flutuar para longe dos fatos. |
+
+## 4.4.  Bloco D — Arquiteturas Modernas
 
