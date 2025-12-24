@@ -23,6 +23,8 @@
     - [3. Tarefas Clássicas de NLP](#3-tarefas-clássicas-de-nlp)
   - [6.2. Tokenização](#62-tokenização)
   - [6.3. Context window](#63-context-window)
+  - [6.4. Viés algoritmico](#64-viés-algoritmico)
+  - [6.5.](#65)
 
 
 # 1. Resumo de conceitos
@@ -365,4 +367,67 @@ Curiosidade: É por isso que modelos antigos tinham dificuldade em inverter pala
 
 ## 6.3. Context window
 
+A Context Window (Janela de Contexto) e a Tokenização estão intrinsecamente ligadas: se o token é a "unidade de medida", a janela de contexto é o "reservatório" onde essas unidades são armazenadas.
 
+Aqui está a explicação de como essa relação funciona:
+
+1. A Analogia do "Buffer" de Memória
+Imagine que a IA é um tradutor trabalhando em uma sala com uma mesa pequena.
+
+Tokens: São os blocos de papel (pedaços de palavras) que chegam para serem traduzidos.
+
+Context Window: É o tamanho da mesa.
+
+Se a mesa (Context Window) suporta apenas 100 blocos (Tokens), assim que o bloco 101 chega, o tradutor é forçado a jogar o bloco 1 da mesa no lixo para abrir espaço. A IA perde a memória do início da conversa para conseguir processar o que acabou de ser dito.
+
+2. Como a Tokenização afeta a Janela
+A relação é de consumo direto. Como a janela de contexto tem um limite fixo (por exemplo, 128k tokens no GPT-4o ou 1M no Gemini), a eficiência da tokenização determina "quanto conteúdo" cabe ali:
+
+Eficiência Bi-direcional: Se o tokenizador for ruim (como em línguas menos comuns), ele pode quebrar a palavra "Paralelepípedo" em 10 tokens. Se for bom, quebra em apenas 2.
+
+Ocupação de Espaço: No primeiro caso, você gastou 10 espaços da sua "mesa" para uma única palavra. No segundo, sobrou muito mais espaço para a IA "lembrar" de outros detalhes do seu prompt.
+
+
+| Fenômeno | Explicação |
+| :--- | :--- |
+| **Esquecimento (Overflow)** | Quando a soma dos tokens do histórico + tokens da pergunta excede a Context Window, a IA "esquece" as instruções iniciais. |
+| **Custo de Processamento** | Quanto maior a janela de contexto cheia de tokens, mais cálculo matemático a IA precisa fazer, o que torna a resposta mais lenta (latência). |
+| **Atenção (Self-Attention)** | A IA compara cada token da janela com todos os outros. Se você tem 100.000 tokens, o modelo está tentando encontrar relações entre milhares de "pedaços" simultaneamente. |
+
+o RAG existe justamente porque a Context Window é limitada e cara. Em vez de tentar colocar 50 livros inteiros (milhões de tokens) dentro da janela de contexto da IA, você usa o RAG para buscar apenas os 500 tokens mais importantes e colocar na "mesa" apenas o que é necessário.
+
+## 6.4. Viés algoritmico
+
+O Viés Algorítmico é um dos temas mais críticos da IA moderna, pois ele prova que a tecnologia não é neutra. Como os modelos aprendem por indução (observando padrões em dados passados para prever o futuro), eles acabam herdando e potencializando os preconceitos presentes na nossa sociedade.
+
+Aqui estão os pilares para entender como o viés se infiltra e se manifesta:
+
+1. As Fontes do Viés
+O viés não nasce no código, mas sim em como os dados são coletados e selecionados:
+
+Viés de Seleção: Quando os dados de treino não representam a realidade. Se um modelo de reconhecimento facial é treinado com 90% de fotos de pessoas brancas, ele terá uma taxa de erro muito maior com pessoas negras.
+
+Viés Histórico: Ocorre quando os dados refletem desigualdades do mundo real. Se historicamente cargos de diretoria foram ocupados por homens, um algoritmo de RH pode aprender que "ser homem" é um requisito para o sucesso, descartando currículos de mulheres qualificadas.
+
+2. O Ciclo de Feedback (Amplificação)
+Diferente de um humano, que pode ter um preconceito mas ser contido por leis ou ética, o algoritmo tende a amplificar o erro. Se o sistema identifica uma correlação errônea (ex: associar certa etnia a maior risco de crédito), ele passará a negar crédito sistematicamente a esse grupo. Isso gera novos dados que "confirmam" a exclusão, criando um ciclo vicioso difícil de quebrar.
+
+3. Como a Indústria Tenta Resolver (Mitigação)
+O combate ao viés acontece em várias frentes:
+
+Data Augmentation: Adicionar artificialmente dados de grupos sub-representados para equilibrar o "conhecimento" do modelo.
+
+RLHF (Reinforcement Learning from Human Feedback): Humanos revisam as respostas da IA e "penalizam" o modelo quando ele apresenta respostas preconceituosas ou tóxicas.
+
+Auditoria de Algoritmos: Testes de estresse onde se pergunta a mesma coisa mudando apenas o gênero ou a raça no prompt para verificar se a resposta varia injustamente.
+
+Por que isso é vital para o seu Bloco B (Modelos)?
+Ao estudar LLMs e BERT/GPT, você verá que quanto maior o modelo, maior a chance de ele ter "decorado" preconceitos sutis da internet. Por isso, empresas como OpenAI e Google gastam meses na etapa de segurança e alinhamento antes de liberar um modelo.
+
+| Tipo de Viés | Exemplo Prático |
+| :--- | :--- |
+| **Gênero** | Tradutores que assumem que "médico" é masculino e "enfermeira" é feminino. |
+| **Cultural** | IAs que consideram nomes ou costumes ocidentais como o "padrão" (default). |
+| **Confirmação** | A IA que apenas concorda com o usuário, reforçando bolhas ideológicas. |
+
+## 6.5. 
