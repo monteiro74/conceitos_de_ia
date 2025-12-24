@@ -240,9 +240,50 @@ for entidade in doc.ents:
     print(f"Entidade: {entidade.text:15} | Categoria: {entidade.label_}")
 ```
 
+O que este código prova:
+Tokenização: Ele quebra a frase automaticamente, sabendo que "fundado" e "por" são unidades distintas.
+
+Inteligência Linguística: Ele entende que a raiz (lemma) de "estão" é o verbo "estar".
+
+Contexto (NER): Ele identifica que "Google" é uma organização (ORG) e "Larry Page" é uma pessoa (PER), sem que você precise dizer isso a ele.
+
 Exemplo com NLTK
 
 ```python
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import RSLPStemmer # Stemmer específico para Português
 
+# 1. Baixa os recursos necessários (apenas na primeira vez)
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('rslp')
 
+# 2. Texto de exemplo
+texto = "O sistema está processando as informações rapidamente."
+
+# 3. Tokenização (quebrar em palavras)
+tokens = word_tokenize(texto, language='portuguese')
+
+# 4. Remoção de Stop Words (o, está, as...)
+palavras_sem_sentido = set(stopwords.words('portuguese'))
+tokens_filtrados = [w for w in tokens if w.lower() not in palavras_sem_sentido]
+
+# 5. Stemming (reduzir ao radical)
+stemmer = RSLPStemmer()
+radicais = [stemmer.stem(w) for w in tokens_filtrados]
+
+print(f"Texto original: {texto}")
+print(f"Tokens filtrados: {tokens_filtrados}")
+print(f"Radicais (Stemming): {radicais}")
 ```
+
+O que este código demonstra de diferente:
+Limpeza de Dados: Ele identifica que palavras como "O", "está" e "as" são ruídos para uma análise estatística e as remove.
+
+Stemming (RSLP): Veja como "processando" vira process e "rapidamente" vira rapid. O NLTK é muito usado para essa "redução bruta", útil para criar buscadores simples onde "processamento" e "processado" devem ser encontrados pela mesma raiz.
+
+
+
+
