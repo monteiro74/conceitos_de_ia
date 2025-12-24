@@ -24,7 +24,7 @@
   - [6.2. Tokenização](#62-tokenização)
   - [6.3. Context window](#63-context-window)
   - [6.4. Viés algoritmico](#64-viés-algoritmico)
-  - [6.5.](#65)
+  - [6.5. Do BERT ao GPT](#65-do-bert-ao-gpt)
 
 
 # 1. Resumo de conceitos
@@ -430,4 +430,46 @@ Ao estudar LLMs e BERT/GPT, você verá que quanto maior o modelo, maior a chanc
 | **Cultural** | IAs que consideram nomes ou costumes ocidentais como o "padrão" (default). |
 | **Confirmação** | A IA que apenas concorda com o usuário, reforçando bolhas ideológicas. |
 
-## 6.5. 
+## 6.5. Do BERT ao GPT
+
+```mermaid
+timeline
+    title Linha do tempo (NLP) — de modelos baseados em regras ao BERT
+    1950s–1990s : Modelos baseados em regras (simbólicos)
+              : Gramáticas, regras manuais, sistemas especialistas
+              : Baixa escalabilidade e alta fragilidade
+
+    1990s–2010 : NLP estatístico
+              : n-grams, modelos probabilísticos
+              : HMM, CRF e pipelines clássicos
+
+    2013–2016 : Word Embeddings
+              : Word2Vec (2013), GloVe, FastText
+              : Vetorização semântica; ainda sem contexto dinâmico
+
+    2014–2017 : Redes neurais sequenciais
+              : RNN, LSTM, GRU
+              : Captura de sequência, mas treinamento lento e difícil em longos contextos
+
+    2017 : Transformer
+         : “Attention Is All You Need”
+         : Self-attention, paralelismo, melhor captura de dependências longas
+
+    2018 : BERT
+         : Encoder-only + contexto bidirecional
+         : Pré-treinamento (MLM/NSP) + fine-tuning para tarefas de compreensão
+
+```
+
+```mermaid
+flowchart TD
+    A[1950s–1990s<br/>Modelos baseados em regras (simbólicos)<br/>• Gramáticas e regras manuais<br/>• Baixa escalabilidade e alta fragilidade] --> 
+    B[1990s–2010<br/>NLP estatístico<br/>• n-grams e modelos probabilísticos<br/>• HMM e CRF em pipelines clássicos] --> 
+    C[2013–2016<br/>Word Embeddings<br/>• Word2Vec (2013), GloVe, FastText<br/>• Vetores semânticos; contexto ainda fixo] --> 
+    D[2014–2017<br/>Redes neurais sequenciais<br/>• RNN, LSTM, GRU<br/>• Capturam sequência; treino lento em longos contextos] --> 
+    E[2017<br/>Transformer<br/>• “Attention Is All You Need”<br/>• Self-attention, paralelismo, dependências longas] --> 
+    F[2018<br/>BERT<br/>• Encoder-only + bidirecional<br/>• Pré-treinamento (MLM/NSP) + fine-tuning]
+
+```
+
+teste
