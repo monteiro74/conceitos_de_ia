@@ -28,6 +28,8 @@
     - [6.5.1. Outros conceitos técnicos](#651-outros-conceitos-técnicos)
     - [6.5.2. Gráfico relacionando BERT, GPT, LLM, MoE e LRM](#652-gráfico-relacionando-bert-gpt-llm-moe-e-lrm)
     - [6.5.3. Mapa de dependência conceitual](#653-mapa-de-dependência-conceitual)
+  - [6.6. Vector Database (Banco de Dados Vetorial)](#66-vector-database-banco-de-dados-vetorial)
+  - [6.7. RAG (Retrieval-Augmented Generation)](#67-rag-retrieval-augmented-generation)
 
 
 # 1. Resumo de conceitos
@@ -702,3 +704,26 @@ flowchart TD
 
 
 ```
+
+## 6.6. Vector Database (Banco de Dados Vetorial)
+
+Diferente de um banco de dados comum (SQL) que busca por palavras exatas, o Vector DB armazena o "significado" das informações na forma de vetores (números em um espaço multidimensional).
+
+Como funciona: Ele utiliza os Embeddings que vimos no Bloco A. Ele guarda frases como coordenadas geográficas.
+
+Busca Semântica: Se você procurar por "felinos domésticos", o banco encontrará "gatos", mesmo que a palavra "felino" não esteja no texto, porque as coordenadas matemáticas são próximas.
+
+Exemplos: Pinecone, Milvus, Weaviate, Chroma.
+
+
+## 6.7. RAG (Retrieval-Augmented Generation)
+
+O RAG é a arquitetura que une o cérebro (LLM) à biblioteca (Vector DB). O fluxo funciona assim:
+
+Pergunta: O usuário faz uma pergunta.
+
+Recuperação (Retrieval): O sistema busca no Vector DB os pedaços de documentos mais relevantes sobre o assunto.
+
+Aumento (Augmentation): O sistema anexa esses documentos ao prompt original do usuário.
+
+Geração (Generation): O LLM lê a pergunta + os documentos e gera uma resposta baseada apenas naqueles fatos.
