@@ -26,6 +26,8 @@
   - [6.4. Viés algoritmico](#64-viés-algoritmico)
   - [6.5. Do BERT ao GPT](#65-do-bert-ao-gpt)
     - [6.5.1. Outros conceitos técnicos](#651-outros-conceitos-técnicos)
+    - [6.5.2. Gráfico relacionando BERT, GPT, LLM, MoE e LRM](#652-gráfico-relacionando-bert-gpt-llm-moe-e-lrm)
+    - [6.5.3. Mapa de dependência conceitual](#653-mapa-de-dependência-conceitual)
 
 
 # 1. Resumo de conceitos
@@ -642,3 +644,61 @@ O Cérebro vs. O Comportamento: O Pré-treinamento dá ao modelo o conhecimento 
 
 Raciocínio Emergente (CoT): O Chain of Thought (Cadeia de Pensamento) é o que diferencia os modelos "normais" dos novos modelos de raciocínio (como a série o1 da OpenAI). Ao forçar a escrita do passo a passo, o modelo usa seus próprios tokens gerados como "memória de rascunho" para não se perder em cálculos complexos.
 
+| Conceito        | O que é                                                                 | Onde atua no modelo/sistema                          | Tecnologias relacionadas                         | Problema que resolve                                   |
+|-----------------|-------------------------------------------------------------------------|------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------|
+| Alinhamento     | Processo de ajustar o comportamento do modelo aos valores e expectativas humanas | Pós-treinamento e inferência                         | RLHF, RLAIF, filtros de segurança                 | Respostas perigosas, tóxicas ou inadequadas            |
+| Instrução       | Capacidade do modelo de compreender e seguir comandos em linguagem natural | Treinamento supervisionado e prompting               | Instruction tuning, Instruct models               | Modelo sabe fatos, mas não sabe “o que fazer”          |
+| Escalabilidade  | Capacidade de aumentar desempenho com mais dados, parâmetros e compute  | Arquitetura e treinamento                            | Scaling laws, LLMs, paralelismo                   | Limite de capacidade cognitiva do modelo               |
+| Eficiência      | Uso otimizado de recursos computacionais para treinar e inferir modelos | Infraestrutura e arquitetura                         | MoE, LoRA, PEFT, quantização                      | Custo alto e inviabilidade operacional                 |
+| Raciocínio      | Habilidade de executar passos lógicos intermediários para resolver problemas | Inferência e estratégias de geração                  | Chain-of-Thought, Tree-of-Thought, LRM            | Respostas superficiais ou incorretas em tarefas complexas |
+
+
+### 6.5.2. Gráfico relacionando BERT, GPT, LLM, MoE e LRM
+
+```mermaid
+
+flowchart TD
+    A["Transformer (base conceitual)"]
+
+    A --> B["BERT<br/>(encoder-only)<br/>compreensao"]
+    A --> C["GPT<br/>(decoder-only)<br/>geracao"]
+
+    B --> D["LLM<br/>(escala de dados e parametros)"]
+    C --> D
+
+    D --> E["MoE<br/>(escala eficiente)<br/>sparse experts"]
+
+    D --> F["LRM<br/>(foco em raciocinio)"]
+    E --> F
+
+
+```
+
+### 6.5.3. Mapa de dependência conceitual
+
+```mermaid
+
+flowchart TD
+    A["NLP classico"] --> B["Embeddings"]
+    B --> C["Modelos sequenciais<br/>(RNN / LSTM)"]
+    C --> D["Transformer"]
+
+    D --> E["BERT<br/>(encoder)"]
+    D --> F["GPT<br/>(decoder)"]
+
+    E --> G["Instruction tuning"]
+    F --> G
+
+    G --> H["Alinhamento<br/>(RLHF / RLAIF)"]
+
+    H --> I["LLM<br/>(escala)"]
+
+    I --> J["Eficiência computacional<br/>(MoE, PEFT)"]
+
+    I --> K["Estrategias de raciocinio<br/>(CoT, ToT)"]
+
+    J --> L["LRM"]
+    K --> L
+
+
+```
