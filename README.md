@@ -1,5 +1,29 @@
 # Conceitos de IA
 
+- [Conceitos de IA](#conceitos-de-ia)
+- [1. Resumo de conceitos](#1-resumo-de-conceitos)
+- [2. Planejamento de Estudos: Inteligência Artificial](#2-planejamento-de-estudos-inteligência-artificial)
+  - [2.1 Bloco A — Fundamentos Obrigatórios](#21-bloco-a--fundamentos-obrigatórios)
+  - [2.2. Bloco B — Modelos de Linguagem](#22-bloco-b--modelos-de-linguagem)
+  - [2.3.  Bloco C — Infraestrutura Semântica](#23--bloco-c--infraestrutura-semântica)
+  - [2.4.  Bloco D — Arquiteturas Modernas](#24--bloco-d--arquiteturas-modernas)
+  - [2.5.  Bloco E — Visão de Longo Prazo (Conceitual)](#25--bloco-e--visão-de-longo-prazo-conceitual)
+- [3. Diagrama](#3-diagrama)
+- [4. Conceitos por bloco](#4-conceitos-por-bloco)
+  - [4.1. Bloco A — Fundamentos Obrigatórios](#41-bloco-a--fundamentos-obrigatórios)
+  - [4.2. Bloco B — Modelos de Linguagem](#42-bloco-b--modelos-de-linguagem)
+  - [4.3.  Bloco C — Infraestrutura Semântica](#43--bloco-c--infraestrutura-semântica)
+  - [4.4.  Bloco D — Arquiteturas Modernas](#44--bloco-d--arquiteturas-modernas)
+  - [4.5.  Bloco E — Visão de Longo Prazo (Conceitual)](#45--bloco-e--visão-de-longo-prazo-conceitual)
+- [5. Resumo](#5-resumo)
+- [6. Detalhamento](#6-detalhamento)
+  - [6.1. NLP](#61-nlp)
+    - [1. A Anatomia do Texto (Linguística Computacional)](#1-a-anatomia-do-texto-linguística-computacional)
+    - [2. A Ponte para a Matemática (Vetorização)](#2-a-ponte-para-a-matemática-vetorização)
+    - [3. Tarefas Clássicas de NLP](#3-tarefas-clássicas-de-nlp)
+  - [6.2. Tokenização](#62-tokenização)
+  - [6.3. Context window](#63-context-window)
+
 
 # 1. Resumo de conceitos
 
