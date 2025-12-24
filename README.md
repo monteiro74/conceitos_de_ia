@@ -33,6 +33,13 @@
     - [6.7.1. Técnicas de RAG](#671-técnicas-de-rag)
     - [6.7.2. Ligação entre Vector e RAG](#672-ligação-entre-vector-e-rag)
     - [6.7.3. Diagrama — Relação entre Chunking, Embeddings, Vector Database e RAG](#673-diagrama--relação-entre-chunking-embeddings-vector-database-e-rag)
+    - [6.8. Agentic AI \& Sub-agents](#68-agentic-ai--sub-agents)
+    - [6.9. AI Workflow (Orquestração)](#69-ai-workflow-orquestração)
+    - [6.10. LRM (Large Reasoning Model)](#610-lrm-large-reasoning-model)
+    - [6.11. MCP (Model Context Protocol)](#611-mcp-model-context-protocol)
+    - [6.12. Tool / Function Calling (O "Braço" da IA)](#612-tool--function-calling-o-braço-da-ia)
+    - [6.13. Memória (Short-term vs. Long-term)](#613-memória-short-term-vs-long-term)
+    - [6.14.  Orquestração de Agentes (O "Maestro")](#614--orquestração-de-agentes-o-maestro)
 
 
 # 1. Resumo de conceitos
@@ -797,4 +804,63 @@ Fluxo de consulta (online)
 * Resposta ancorada em dados reais
 
 
+### 6.8. Agentic AI & Sub-agents
+Diferente do Chat tradicional, a IA Agêntica possui autonomia. Você não dá um passo a passo, você dá um objetivo.
+
+Agentic AI: O modelo principal atua como um "Gerente de Projeto". Ele recebe o objetivo (ex: "Pesquise os concorrentes e crie um relatório de preços") e decide quais ferramentas usar.
+
+Sub-agents: São instâncias especializadas criadas pelo agente principal. Um sub-agente pode ser focado apenas em navegação web, outro em análise de dados e um terceiro em redação. Eles trabalham em paralelo e reportam ao gerente.
+
+### 6.9. AI Workflow (Orquestração)
+Enquanto os agentes são autônomos, os Workflows são processos estruturados (encadeados).
+
+Fluxo Linear: A saída da etapa A (ex: extrair texto de um PDF) vira a entrada da etapa B (ex: traduzir texto).
+
+Benefício: Maior controle e menor chance de erro. Você define regras rígidas sobre como a IA deve se comportar em cada fase do processo industrial de dados.
+
+### 6.10. LRM (Large Reasoning Model)
+Este conceito (popularizado pela série o1 da OpenAI) muda o paradigma do "prever a próxima palavra".
+
+Test-Time Compute: O modelo gasta mais tempo "pensando" (computando internamente) antes de começar a escrever.
+
+System 2 Thinking: Baseado na psicologia, é o pensamento lento e deliberativo. O LRM usa Chain of Thought (CoT) interna para verificar seus próprios erros e testar hipóteses antes de entregar a resposta final ao usuário.
+
+### 6.11. MCP (Model Context Protocol)
+Introduzido recentemente pela Anthropic, o MCP resolve o problema da "Torre de Babel" das integrações.
+
+O Problema: Antes, cada empresa criava sua própria forma de conectar a IA ao Google Drive, Slack ou GitHub.
+
+A Solução: Um protocolo universal. Se um banco de dados ou ferramenta suporta MCP, qualquer modelo de IA (Claude, GPT, Llama) pode se conectar a ele instantaneamente, sem precisar de código customizado para cada modelo.
+
+
+### 6.12. Tool / Function Calling (O "Braço" da IA)
+É a capacidade da IA de não apenas falar, mas executar ações. O modelo não "roda" o código do Google Calendar, mas ele é treinado para interromper a geração de texto e dizer: "Preciso chamar a função agendar_reuniao com os parâmetros data='2025-12-25'".
+
+Como funciona: O desenvolvedor fornece uma lista de ferramentas (JSON) para a IA. Se a pergunta do usuário exige dados externos ou ações, a IA escolhe a ferramenta certa.
+
+Exemplo: Um agente de vendas que usa uma "Tool" para consultar o estoque em tempo real em um banco de dados SQL.
+
+### 6.13. Memória (Short-term vs. Long-term)
+Um agente precisa saber quem você é e o que foi feito cinco minutos atrás.
+
+Short-term (Curto Prazo): É o histórico imediato da conversa dentro da Context Window. É volátil e desaparece quando a sessão acaba.
+
+Long-term (Longo Prazo): Geralmente implementada via Vector DB ou bancos de dados relacionais. Permite que a IA lembre da sua preferência de café ou de um projeto discutido há três meses.
+
+Memória de Trabalho: Onde a IA armazena rascunhos de planos que ela mesma criou (comum em modelos de raciocínio).
+
+### 6.14.  Orquestração de Agentes (O "Maestro")
+Quando você tem múltiplos sub-agentes, você precisa de um padrão de comunicação (Design Patterns). Os mais comuns são:
+
+Handoff (Passagem de Bastão): O Agente de Triagem entende que o problema é técnico e "passa a bola" para o Agente de Suporte.
+
+Hierarquia: Um "Líder" delega tarefas para subordinados e revisa o trabalho final.
+
+Joint Collaboration: Agentes conversam entre si em um "quadro compartilhado" (Blackboard pattern) para resolver um problema que nenhum deles conseguiria sozinho.
+
+| Conceito | O que ele é na prática? | Valor para o Sistema |
+| :--- | :--- | :--- |
+| **Tool Calling** | Uma ponte entre o texto da IA e o código do sistema. | Transforma palavras em ações reais (enviar e-mail, comprar). |
+| **Memória** | Armazenamento de estados e preferências (Contexto). | Evita que o usuário tenha que se repetir a cada interação. |
+| **Orquestração** | O framework de gestão (ex: CrewAI, LangGraph, AutoGen). | Garante que os agentes não entrem em loop e concluam a tarefa. |
 
