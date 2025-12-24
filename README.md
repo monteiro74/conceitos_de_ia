@@ -30,7 +30,9 @@
     - [6.5.3. Mapa de dependência conceitual](#653-mapa-de-dependência-conceitual)
   - [6.6. Vector Database (Banco de Dados Vetorial)](#66-vector-database-banco-de-dados-vetorial)
   - [6.7. RAG (Retrieval-Augmented Generation)](#67-rag-retrieval-augmented-generation)
-    - [6.7.1. Ligação entre Vector e RAG](#671-ligação-entre-vector-e-rag)
+    - [6.7.1. Técnicas de RAG](#671-técnicas-de-rag)
+    - [6.7.2. Ligação entre Vector e RAG](#672-ligação-entre-vector-e-rag)
+    - [6.7.3. Diagrama — Relação entre Chunking, Embeddings, Vector Database e RAG](#673-diagrama--relação-entre-chunking-embeddings-vector-database-e-rag)
 
 
 # 1. Resumo de conceitos
@@ -729,13 +731,70 @@ Aumento (Augmentation): O sistema anexa esses documentos ao prompt original do u
 
 Geração (Generation): O LLM lê a pergunta + os documentos e gera uma resposta baseada apenas naqueles fatos.
 
-### 6.7.1. Ligação entre Vector e RAG
+RAG não é um modelo, é um padrão arquitetural que combina:
+
+* recuperação de informação (IR)
+* embeddings
+* bancos vetoriais
+* LLMs
+
+### 6.7.1. Técnicas de RAG
+
+Chunking: Como dividir um PDF de 100 páginas? Se os pedaços (chunks) forem muito pequenos, perde-se o contexto. Se forem muito grandes, a IA se confunde.
+
+Re-ranking: Após o Vector DB entregar 10 resultados, um modelo de "re-ranker" analisa qual deles é realmente o melhor antes de mandar para o LLM.
+
+HyDE (Hypothetical Document Embeddings): A IA cria uma "resposta fictícia" para a sua pergunta e usa essa resposta para buscar documentos reais. Isso melhora muito a precisão.
+
+### 6.7.2. Ligação entre Vector e RAG
 
 1. Embeddings (A Ponte)
 Embeddings são o "tradutor" que transforma texto em vetores. É um modelo de IA menor que gera uma lista de números (ex: 1536 dimensões) para cada sentença. Sem bons embeddings, o Vector DB não consegue encontrar a informação correta.
 
 2. Semantic Search (Busca Semântica)
 É o ato de encontrar informações pelo conceito, não pela palavra-chave. Isso permite que sistemas de suporte ao cliente entendam a intenção do usuário mesmo quando ele usa gírias ou termos imprecisos.
+
+### 6.7.3. Diagrama — Relação entre Chunking, Embeddings, Vector Database e RAG
+
+```mermaid
+
+flowchart TD
+    A["Documentos brutos<br/>(PDF, TXT, HTML, DOC)"]
+
+    A --> B["Chunking<br/>(quebra em partes menores)"]
+
+    B --> C["Embeddings<br/>(vetorizacao semantica)"]
+
+    C --> D["Vector Database<br/>(armazenamento e busca por similaridade)"]
+
+    E["Pergunta do usuario"] --> F["Embedding da consulta"]
+
+    F --> D
+
+    D --> G["Recuperacao dos chunks mais relevantes"]
+
+    G --> H["RAG<br/>(Retrieval Augmented Generation)"]
+
+    H --> I["Resposta gerada pelo LLM<br/>baseada nos documentos"]
+
+
+```
+
+Fluxo de ingestão (offline ou pré-processamento)
+
+* Documentos brutos
+* Chunking → evita limites de contexto e melhora granularidade
+* Embeddings → transforma texto em vetores semânticos
+* Vector database → indexa e permite busca eficiente
+
+Fluxo de consulta (online)
+
+* Pergunta do usuário
+* Embedding da pergunta
+* Busca vetorial por similaridade
+* Recuperação de chunks relevantes
+* RAG injeta esses chunks no prompt do LLM
+* Resposta ancorada em dados reais
 
 
 
