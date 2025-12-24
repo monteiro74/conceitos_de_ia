@@ -25,6 +25,7 @@
   - [6.3. Context window](#63-context-window)
   - [6.4. Viés algoritmico](#64-viés-algoritmico)
   - [6.5. Do BERT ao GPT](#65-do-bert-ao-gpt)
+    - [6.5.1. Outros conceitos técnicos](#651-outros-conceitos-técnicos)
 
 
 # 1. Resumo de conceitos
@@ -499,4 +500,145 @@ gantt
 
 ```
 
+
+1. BERT (Bidirectional Encoder Representations from Transformers)
+
+Lançado pelo Google em 2018, o BERT mudou o jogo porque ele é bidirecional.
+
+Como funciona: Diferente de modelos antigos que liam uma frase da esquerda para a direita, o BERT lê a frase inteira de uma vez, em ambas as direções.
+
+O Diferencial: Ele entende o contexto baseado no que vem antes e depois de uma palavra.
+
+Exemplo: Na frase "Eu peguei o banco para sentar" e "Eu fui ao banco sacar dinheiro", o BERT sabe que "banco" tem significados diferentes porque ele analisa as palavras vizinhas simultaneamente.
+
+Uso principal: Ele é um mestre em compreensão. O Google o utiliza para entender o que você realmente quer dizer em uma busca.
+
+2. GPT (Generative Pre-trained Transformer)
+
+Enquanto o BERT é focado em entender, o GPT (da OpenAI) é focado em gerar.
+
+Unidirecional: Ao contrário do BERT, o GPT é treinado para prever a próxima palavra em uma sequência. Ele lê da esquerda para a direita.
+
+Auto-regressivo: Ele gera uma palavra, coloca essa palavra de volta na entrada e gera a próxima. É um processo contínuo de "adivinhação estatística" de alta precisão.
+
+Uso principal: Escrita criativa, programação, tradução e diálogos.
+
+3. LLM (Large Language Models)
+
+Este é o termo "guarda-chuva" para modelos como GPT, Llama e Claude. O que os torna "Large" (Grandes)?
+
+Parâmetros: São as conexões internas (como sinapses) que o modelo ajusta durante o treino. LLMs modernos têm bilhões (ou trilhões) de parâmetros.
+
+Escala de Dados: Eles são treinados com praticamente toda a internet pública (Wikipedia, livros, códigos, fóruns).
+
+Emergência: O fenômeno mais incrível dos LLMs é que, ao atingirem certo tamanho, eles começam a apresentar habilidades que não foram ensinadas diretamente, como resolver problemas de lógica ou explicar piadas.
+
+4. MoE (Mixture of Experts - Mistura de Especialistas)
+
+Esta é a arquitetura por trás dos modelos mais poderosos e eficientes hoje (como o GPT-4 e o Mixtral).
+
+O Problema: Conforme os modelos crescem, eles ficam pesados e lentos demais para rodar.
+
+A Solução: Em vez de usar todo o cérebro para cada pergunta, o MoE divide o modelo em "especialistas" menores.
+
+Como funciona: Quando você faz uma pergunta sobre "receita de bolo", um "roteador" direciona a tarefa apenas para os especialistas em culinária e linguagem, deixando os especialistas em "física quântica" ou "código C++" desligados. Isso economiza energia e aumenta a velocidade sem perder a inteligência.
+
+| Modelo | Foco Principal | Direção da Leitura | Analogia |
+| :--- | :--- | :--- | :--- |
+| **BERT** | Compreensão / Busca | Bidirecional | Um estudante lendo um livro com atenção total. |
+| **GPT** | Geração de Texto | Unidirecional | Um contador de histórias criando a próxima frase. |
+| **MoE** | Eficiência em Escala | Dinâmica | Uma empresa com vários departamentos especializados. |
+
+```mermaid
+
+flowchart TD
+    A["NLP clássico"] --> B["Embeddings"]
+    B --> C["RNN / LSTM"]
+    C --> D["Transformer (self-attention)"]
+
+    D --> E["BERT (encoder-only)"]
+    D --> F["GPT (decoder-only)"]
+    D --> G["Encoder–Decoder (seq2seq)"]
+
+    E --> H["Instruction tuning"]
+    F --> H
+    G --> H
+
+    H --> I["RLHF (alinhamento com feedback humano)"]
+    I --> J["LLM (escala: dados + parâmetros + compute)"]
+
+    J --> K["MoE (escala eficiente: sparse experts)"]
+    J --> L["Reasoning strategies (CoT, self-consistency, ToT)"]
+
+    K --> M["LRM (Large Reasoning Model)"]
+    L --> M
+
+
+```
+
+
+### 6.5.1. Outros conceitos técnicos
+
+1. Transformer: Encoder-Decoder
+
+A arquitetura original (2017) era composta por duas partes. Hoje, os modelos costumam se especializar em uma delas:
+
+Encoder (ex: BERT): Focado em entender e representar o texto. "Lê" tudo de uma vez.
+
+Decoder (ex: GPT): Focado em gerar texto. "Escreve" uma palavra por vez.
+
+Encoder-Decoder (ex: T5, BART): O encoder processa a entrada (ex: uma frase em Inglês) e o decoder gera a saída (ex: a tradução em Português).
+
+2. Pré-treinamento: Autoregressivo vs. Bidirecional
+
+Bidirecional: O modelo olha para a esquerda e para a direita simultaneamente. É ótimo para entender contexto, mas ruim para gerar textos longos.
+
+Autoregressivo: O modelo prevê a próxima palavra baseando-se apenas no que veio antes. É a base de todos os modelos geradores modernos (GPTs).
+
+3. Instruction Tuning & RLHF (O Alinhamento)
+
+Um modelo pré-treinado na internet apenas "completa textos". Se você perguntar "Qual a capital da França?", ele pode responder com "E qual a capital da Itália?" (porque ele viu listas de perguntas na web).
+
+Instruction Tuning: Treina o modelo em pares de "Comando -> Resposta" para ele entender que deve obedecer ordens.
+
+RLHF (Aprendizado por Reforço com Feedback Humano): Humanos pontuam as respostas da IA. O modelo aprende a ser mais útil, educado e menos tóxico através de um sistema de "recompensa".
+
+4. Scaling Laws (Leis de Escala)
+
+É a descoberta científica de que o desempenho da IA é previsível. Se você aumentar o poder de computação, o tamanho do modelo e a quantidade de dados na proporção certa, a inteligência melhora de forma constante. Isso justificou os investimentos bilionários em infraestrutura.
+
+5. Dense vs. Sparse Models
+
+Dense (Densos): Cada vez que você faz uma pergunta, todos os parâmetros do modelo são ativados (ex: GPT-3). É muito caro computacionalmente.
+
+Sparse (Esparsos): É a base do MoE. Apenas uma pequena parte do modelo "acorda" para responder. É mais eficiente e permite modelos maiores com menor custo.
+
+6. Fine-tuning Eficiente (PEFT / LoRA)
+
+Treinar um modelo inteiro de novo é impossível para a maioria das empresas.
+
+LoRA (Low-Rank Adaptation): Em vez de mudar todos os bilhões de pesos da IA, você adiciona uma "camada fina" de novos parâmetros e treina apenas ela. É como colocar um "óculos especializado" na IA sem precisar fazer uma cirurgia no cérebro dela.
+
+7. Reasoning Strategies (Estratégias de Raciocínio)
+
+Como extrair o máximo de inteligência do modelo no momento da resposta:
+
+CoT (Chain of Thought): Força a IA a "pensar passo a passo" antes de dar o resultado final.
+
+ToT (Tree of Thoughts): A IA explora vários caminhos de solução simultâneos e escolhe o que parece mais promissor, como um jogador de xadrez avaliando jogadas futuras.
+
+| Conceito | O que resolve? |
+| :--- | :--- |
+| **RLHF** | Alinha o comportamento da IA com os valores humanos e a utilidade das respostas. |
+| **LoRA** | Permite o ajuste fino (fine-tuning) de modelos gigantes em hardware comum/doméstico. |
+| **CoT / ToT** | Melhora drasticamente a precisão em problemas complexos, lógicos e matemáticos. |
+| **Scaling Laws** | Determina o equilíbrio ideal entre tamanho do modelo, dados e poder computacional. |
+
+Mapa mental, vale destacar a relação entre esses itens:
+
+O Casal Perfeito (LoRA + Fine-tuning): Antigamente, para adaptar um modelo, você precisava de supercomputadores. Com o LoRA, você "congela" o modelo original e treina apenas uma pequena matriz adicional. Isso reduz a necessidade de memória de vídeo (VRAM) em até 90%.
+
+O Cérebro vs. O Comportamento: O Pré-treinamento dá ao modelo o conhecimento (saber quem foi Dom Pedro II). O Instruction Tuning e o RLHF dão a ele a personalidade e a capacidade de seguir um chat (saber que deve responder de forma resumida e educada).
+
+Raciocínio Emergente (CoT): O Chain of Thought (Cadeia de Pensamento) é o que diferencia os modelos "normais" dos novos modelos de raciocínio (como a série o1 da OpenAI). Ao forçar a escrita do passo a passo, o modelo usa seus próprios tokens gerados como "memória de rascunho" para não se perder em cálculos complexos.
 
