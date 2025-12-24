@@ -174,4 +174,75 @@ Isso é chamado de "Faithfulness" (Fidelidade): o desafio de garantir que a IA n
 
 * Bloco E: O horizonte (ASI).
 
-# 6. 
+# 6. Detalhamento
+
+## 6.1. NLP
+
+### 1. A Anatomia do Texto (Linguística Computacional)
+
+Antes da IA "entender", ela precisa limpar o terreno. No NLP tradicional e moderno, usamos estes processos:
+
+Normalization (Normalização): Transformar tudo para minúsculas, remover pontuações inúteis e padronizar o texto (ex: "Vô" e "Vovô" podem ser tratados de forma similar).
+
+Stemming e Lemmatization: Reduzir palavras ao seu radical ou forma base.
+
+Exemplo: "Correndo", "correu" e "corre" tornam-se apenas "corr-". Isso ajuda a IA a entender que a ação é a mesma.
+
+Stop Words: Filtrar palavras que não carregam significado sozinhas (como "o", "a", "de", "com").
+
+### 2. A Ponte para a Matemática (Vetorização)
+
+Aqui está o segredo: Máquinas não processam palavras, elas processam números.
+
+Bag of Words (BoW): A forma mais simples. Apenas conta quantas vezes cada palavra aparece em um texto.
+
+TF-IDF: Uma técnica mais inteligente que dá peso às palavras. Se a palavra "clima" aparece muito em um texto de meteorologia, ela é importante. Se a palavra "o" aparece muito, ela é ignorada.
+
+Word Embeddings: É o conceito mais moderno. Cada palavra vira uma coordenada em um espaço 3D (ou de mil dimensões).
+
+Magia matemática: No mundo dos embeddings, se você fizer a conta Rei - Homem + Mulher, o resultado matemático será as coordenadas da palavra Rainha.
+
+### 3. Tarefas Clássicas de NLP
+    
+Ao estudar, você verá que o NLP busca resolver problemas específicos:
+
+Análise de Sentimento: Classificar se um texto é "positivo", "negativo" ou "neutro".
+
+NER (Named Entity Recognition): Identificar o que é nome de pessoa, o que é empresa e o que é cidade dentro de um parágrafo.
+
+Part-of-Speech Tagging: Identificar quem é o verbo, o substantivo e o adjetivo na frase.
+
+
+O NLTK (Natural Language Toolkit) é a biblioteca mais tradicional e acadêmica, servindo como uma enorme caixa de ferramentas para quem está aprendendo os fundamentos do NLP, pois oferece centenas de algoritmos e conjuntos de dados para tarefas granulares como separação de frases e estudos linguísticos detalhados. Já o spaCy é focado em performance e ambiente de produção, servindo para processar grandes volumes de dados de forma extremamente rápida e industrial, entregando modelos de inteligência artificial já prontos para identificar nomes, entidades e estruturas gramaticais com mínima configuração. Enquanto o NLTK é excelente para exploração e ensino, o spaCy é a escolha padrão para construir aplicações reais que precisam de velocidade e precisão.
+
+Exemplo com SpaCy
+
+```python
+import spacy
+
+# 1. Carrega o modelo de IA para a língua portuguesa
+nlp = spacy.load("pt_core_news_sm")
+
+# 2. Texto de exemplo para processamento
+texto = "O Google foi fundado por Larry Page nos Estados Unidos. Eles estão inovando em IA hoje."
+
+# 3. O 'nlp' processa o texto (fazendo tokenização, análise gramatical e reconhecimento de entidades)
+doc = nlp(texto)
+
+print("--- ANALISE DE TOKENS ---")
+# Demonstração de Tokens e Lemmatização (forma base da palavra)
+for token in doc[:6]: # Analisando os primeiros 6 tokens
+    print(f"Token: {token.text:10} | Raiz (Lemma): {token.lemma_:10} | Classe: {token.pos_}")
+
+print("\n--- RECONHECIMENTO DE ENTIDADES (NER) ---")
+# Identifica o que é Organização, Pessoa ou Local
+for entidade in doc.ents:
+    print(f"Entidade: {entidade.text:15} | Categoria: {entidade.label_}")
+```
+
+Exemplo com NLTK
+
+```python
+
+
+```
