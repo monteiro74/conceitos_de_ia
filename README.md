@@ -108,8 +108,18 @@ graph TD
 
 4. Viés Algorítmico Ocorre quando um sistema de IA produz resultados sistematicamente distorcidos ou injustos, geralmente refletindo preconceitos históricos, sociais ou erros de amostragem presentes nos dados usados para treiná-lo. Como a IA aprende por padrões, se os dados de treino contiverem estereótipos de gênero, raça ou classe, o modelo irá replicar e até amplificar essas injustiças em suas previsões ou decisões automáticas.
 
+5. A temperatura é um hiperparâmetro que regula o grau de aleatoriedade e criatividade nas respostas de um modelo de linguagem. Tecnicamente, ela ajusta as probabilidades dos tokens na camada de saída: uma temperatura baixa (próxima de 0) torna o modelo determinístico e focado na resposta mais provável, ideal para tarefas técnicas ou fatos; já uma temperatura alta (próxima de 1 ou mais) distribui a probabilidade entre outros tokens menos óbvios, resultando em textos mais variados, criativos e "ousados", porém com maior risco de inconsistência.
+
+6. A alucinação ocorre quando um modelo de IA gera informações que soam convincentes e gramaticalmente corretas, mas que são factualmente falsas, inexistentes ou sem fundamento nos dados de entrada. Como os LLMs funcionam com base em probabilidades estatísticas para prever a próxima palavra — e não em um banco de dados de verdades absolutas —, eles podem acabar "inventando" referências bibliográficas, datas históricas ou funções de código quando tentam satisfazer o pedido do usuário sem ter a informação precisa em seus pesos de treinamento.
+
 ## 4.2. Bloco B — Modelos de Linguagem
 
+7. BERT (Bidirectional Encoder Representations from Transformers) Lançado pelo Google em 2018, o BERT revolucionou o campo ao introduzir o processamento bidirecional. Diferente de modelos anteriores que liam o texto da esquerda para a direita ou vice-versa, o BERT analisa a frase inteira simultaneamente, permitindo que ele entenda o significado de uma palavra com base em tudo o que vem antes e depois dela. Essa capacidade o tornou excepcionalmente bom em tarefas de compreensão, como busca semântica e classificação de textos.
 
+8. GPT (Generative Pre-trained Transformer) Desenvolvida pela OpenAI, a arquitetura GPT foca na capacidade generativa, utilizando um processamento unidirecional (causal). O seu princípio fundamental é a previsão do próximo token: dado um trecho de texto, o modelo calcula a probabilidade estatística da próxima unidade de informação. Ao ser treinado em volumes massivos de dados, essa simples tarefa de "completar frases" permite que o modelo desenvolva habilidades complexas de escrita, tradução e até programação.
+
+9. LLM (Large Language Model) O termo refere-se a modelos de IA que atingiram uma escala massiva tanto em número de parâmetros (os "neurônios" virtuais) quanto em volume de dados de treinamento. O que define um LLM não é apenas o seu tamanho, mas o surgimento de "propriedades emergentes" — capacidades que não foram explicitamente programadas, como raciocínio lógico e resolução de problemas complexos, que só aparecem quando o modelo cruza um certo limiar de escala computacional.
+
+10. MoE (Mixture of Experts) É uma técnica de design de redes neurais que permite criar modelos gigantescos de forma eficiente. Em vez de ativar todos os parâmetros para cada pergunta (como uma "caixa única"), o modelo é dividido em vários subconjuntos especializados (os "especialistas"). Quando uma tarefa chega, um roteador inteligente ativa apenas os especialistas mais relevantes para aquele assunto. Isso permite que modelos como o GPT-4 ou o Mixtral tenham trilhões de parâmetros, mas consumam menos energia e tempo de resposta do que se fossem modelos densos tradicionais.
 
 
